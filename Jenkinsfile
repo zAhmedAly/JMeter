@@ -24,6 +24,7 @@ pipeline {
 post {
    success {
       sh 'mv /apps/jmeter/reports/Test_${BUILD_NUMBER} /var/www/html/reports'
+     mail body: 'Load Test Results ${BUILD_NUMBER}: http://165.227.24.75/reports/Test_${BUILD_NUMBER}', from: 'Jenkins', subject: 'Load Test Results ${BUILD_NUMBER}', to: 'aaoflaca@gmail.com'
    }
 }
 }
