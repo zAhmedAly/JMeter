@@ -1,4 +1,7 @@
 pipeline {
+  environment {
+            EMAIL_TO = 'aaoflaca@gmail.com
+  }
   agent {label 'AAServer01_Slave01'}
   stages {
     stage('Clone Test Script') {
