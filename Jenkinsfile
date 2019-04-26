@@ -1,6 +1,6 @@
 pipeline {
   environment {
-            EMAIL_TO = 'aaoflaca@gmail.com'
+            EMAIL_TO = 'ahmed_i_aly@yahoo.com'
   }
   agent {label 'AAServer01_Slave01'}
   stages {
