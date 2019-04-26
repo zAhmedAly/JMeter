@@ -26,8 +26,9 @@ pipeline {
   }
 post {
   always {
-     mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL} <br><br> Load Test Results ${BUILD_NUMBER}: http://165.227.24.75/reports/Test_${BUILD_NUMBER}", cc: '', charset: 'UTF-8', from: 'Jenkins', mimeType: 'text/html', replyTo: '', subject: "Load Test Results ${BUILD_NUMBER}", to: "aaoflaca@gmail.com";  
- }
+emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                        to: EMAIL_TO, 
+                        subject: 'Build Jenkins: $PROJECT_NAME - #$BUILD_NUMBER' }
    success {
      sh 'mv /apps/jmeter/reports/Test_${BUILD_NUMBER} /var/www/html/reports'
      mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL} <br><br> Load Test Results ${BUILD_NUMBER}: http://165.227.24.75/reports/Test_${BUILD_NUMBER}", cc: '', charset: 'UTF-8', from: 'Jenkins', mimeType: 'text/html', replyTo: '', subject: "Load Test Results ${BUILD_NUMBER}", to: "aaoflaca@gmail.com";  
